@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RQVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Declaration">
+    <Key>
+      <PropertyRef Name="declaration_id" />
+    </Key>
+    <Property Name="declaration_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="objectCat_id" Type="int" />
+    <Property Name="object_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="obj_description" Type="nvarchar(max)" />
+    <Property Name="vol_date" Type="datetime" Nullable="false" />
+    <Property Name="place" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="decl_date" Type="datetime" Nullable="false" />
+    <Property Name="user_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="statut" Type="int" />
+  </EntityType>
+  <EntityType Name="ObjectCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="tel" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__Declarati__objec__3C69FB99">
+    <End Role="ObjectCategory" Type="Self.ObjectCategory" Multiplicity="0..1" />
+    <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ObjectCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Declaration">
+        <PropertyRef Name="objectCat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Declarati__user___3B75D760">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Declaration">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RQVModelStoreContainer">
+    <EntitySet Name="Declaration" EntityType="Self.Declaration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ObjectCategory" EntityType="Self.ObjectCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Declarati__objec__3C69FB99" Association="Self.FK__Declarati__objec__3C69FB99">
+      <End Role="ObjectCategory" EntitySet="ObjectCategory" />
+      <End Role="Declaration" EntitySet="Declaration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Declarati__user___3B75D760" Association="Self.FK__Declarati__user___3B75D760">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Declaration" EntitySet="Declaration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

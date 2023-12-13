@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DeclarationDeVol.Models.ObjectCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4 class="text-primary fw-bold">Gestion des catégories d'objets</h4>
+
+<p class="mt-4">
+    <a class="btn btn-success" href="~/ObjectCategories/Create/">Ajouter une catégorie d'objet</a>
+</p>
+<table class="table table-borderless datatable">
+    <thead>
+        <tr>
+            <th scope="col">Numéro</th>
+            <th scope="col">Libellé</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.id)</td>
+                <td>@Html.DisplayFor(modelItem => item.name)</td>
+              
+                <td>
+                    <a href="~/ObjectCategories/Details/@item.id" title="Voir" class="edit-icon"><i class="bi bi-eye text-info"></i></a>
+                    <a href="~/ObjectCategories/Edit/@item.id" title="Editer" class="mx-2"><i class="bi bi-pencil text-success"></i></a>
+                    <a href="~/ObjectCategories/Delete/@item.id" title="Supprimer" class="edit-icon"><i class="bi bi-trash text-danger"></i></a>
+                </td>
+
+
+            </tr>
+        }
+
+</table>
+

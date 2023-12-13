@@ -1,0 +1,51 @@
+﻿@model DeclarationDeVol.Models.Declaration
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4 class="text-primary fw-bold">Détails de la déclaration</h4>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Informations de la déclaration</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Display Product Information -->
+                            <div class="col-md-6 mt-md-2">
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.Users.last_name) et @Html.DisplayNameFor(model => model.Users.first_name): </strong>@Html.DisplayFor(model => model.Users.last_name) @Html.DisplayFor(model => model.Users.first_name)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.user_role): </strong> @Html.DisplayFor(model => model.user_role)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.object_name):  </strong> @Html.DisplayFor(model => model.object_name)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.vol_date): </strong>  @Html.DisplayFor(model => model.vol_date)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.place): </strong> @Html.DisplayFor(model => model.place)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.obj_description): </strong> @Html.DisplayFor(model => model.obj_description)</p>
+                                <p>
+                                    <strong class="text-success">@Html.DisplayNameFor(model => model.statut): </strong>
+                                    @if (Model.statut == 1)
+                                    {
+                                        <span class="badge bg-success">Traitée</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">En cours</span>
+                                    }
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id = Model.declaration_id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Allez à la liste", "Index", null, new { @class = "btn btn-primary" })
+</p>

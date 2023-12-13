@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RQVModelStoreContainer" CdmEntityContainer="RQVEntities1">
+    <EntitySetMapping Name="Declaration">
+      <EntityTypeMapping TypeName="RQVModel.Declaration">
+        <MappingFragment StoreEntitySet="Declaration">
+          <ScalarProperty Name="declaration_id" ColumnName="declaration_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="objectCat_id" ColumnName="objectCat_id" />
+          <ScalarProperty Name="object_name" ColumnName="object_name" />
+          <ScalarProperty Name="obj_description" ColumnName="obj_description" />
+          <ScalarProperty Name="vol_date" ColumnName="vol_date" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="decl_date" ColumnName="decl_date" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="statut" ColumnName="statut" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ObjectCategory">
+      <EntityTypeMapping TypeName="RQVModel.ObjectCategory">
+        <MappingFragment StoreEntitySet="ObjectCategory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RQVModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

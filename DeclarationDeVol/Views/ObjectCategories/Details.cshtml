@@ -1,0 +1,33 @@
+﻿@model DeclarationDeVol.Models.ObjectCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4 class="text-primary fw-bold">Détails de la catégorie</h4>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Informations de la catégorie</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Display Product Information -->
+                            <div class="col-md-6 mt-md-2">
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.name): </strong>@Html.DisplayFor(model => model.name)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Allez à la liste", "Index", null, new { @class = "btn btn-primary" })

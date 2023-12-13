@@ -1,0 +1,39 @@
+﻿@model DeclarationDeVol.Models.Users
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4 class="text-primary fw-bold">Détails du déclarant</h4>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Informations du déclarant</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Display Product Information -->
+                            <div class="col-md-6 mt-md-2">
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.first_name): </strong>@Html.DisplayFor(model => model.first_name)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.last_name):  </strong> @Html.DisplayFor(model => model.last_name)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.email): </strong>  @Html.DisplayFor(model => model.email)</p>
+                                
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.tel): </strong> @Html.DisplayFor(model => model.tel)</p>
+                                <p><strong class="text-success">@Html.DisplayNameFor(model => model.address): </strong> @Html.DisplayFor(model => model.address)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id = Model.id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Allez à la liste", "Index", null, new { @class = "btn btn-primary" })
+</p>

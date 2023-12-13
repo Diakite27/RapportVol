@@ -1,0 +1,45 @@
+﻿@model DeclarationDeVol.Models.ObjectCategory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h4 class="text-primary fw-bold">Suppression de la catégorie</h4>
+<h4 class="text-danger">Voulez-vous vraiment supprimer cette catégorie?</h4>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Suppression de la catégorie <span class="text-info fw-bold">@Html.DisplayFor(model => model.name)</span> </h5>
+                    </div>
+                    <div class="card-body mt-5">
+                        <div class="row">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <input type="submit" class="btn btn-danger" value="Supprimer" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="pull-right">
+                                                    @Html.ActionLink("Allez à la liste", "Index", null, new { @class = "btn btn-primary" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

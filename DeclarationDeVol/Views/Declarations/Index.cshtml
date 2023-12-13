@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DeclarationDeVol.Models.Declaration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h4 class="text-primary fw-bold">Gestion des déclarations</h4>
+
+<p class="mt-4">
+    <a class="btn btn-success" href="~/Declarations/Create/">Ajouter une déclaration</a>
+</p>
+<table class="table table-borderless datatable">
+    <thead>
+        <tr>
+            <th scope="col">Déclarant</th>
+            <th scope="col">Objet</th>
+            <th scope="col">Date vol</th>
+            <th scope="col">Adresse vol</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a href="~/Users/Details/@item.Users.id" class="text-primary fw-bold">@Html.DisplayFor(modelItem => item.Users.last_name) @Html.DisplayFor(modelItem => item.Users.first_name)</a></td>
+                <td>@Html.DisplayFor(modelItem => item.object_name)</td>
+                <td>@item.vol_date.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.place)</td>
+                <td>
+                    @if (item.statut == 1)
+                    {
+                        <a href="~/Declarations/Details/@item.declaration_id" class="badge bg-success">Traitée</a>
+                    }
+                    else
+                    {
+                        <a href="~/Declarations/Details/@item.declaration_id" class="badge bg-danger">En cours</a>
+                    }
+                </td>
+                <td>
+                    <a href="~/Declarations/Details/@item.declaration_id" title="Voir" class="edit-icon"><i class="bi bi-eye text-info"></i></a>
+                    <a href="~/Declarations/Edit/@item.declaration_id" title="Editer" class="mx-2"><i class="bi bi-pencil text-success"></i></a>
+                    <a href="~/Declarations/Delete/@item.declaration_id" title="Supprimer" class="edit-icon"><i class="bi bi-trash text-danger"></i></a>
+                </td>
+
+
+            </tr>
+        }
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DeclarationDeVol.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h4 class="text-primary fw-bold">Gestion des déclarants</h4>
+
+<p class="mt-4">
+    <a class="btn btn-success" href="~/Users/Create/">Ajouter un déclarant</a>
+</p>
+<table class="table table-borderless datatable">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.first_name)</td>
+                <td>@Html.DisplayFor(modelItem => item.last_name)</td>
+                <td>@Html.DisplayFor(modelItem => item.email)</td>
+                <td>@Html.DisplayFor(modelItem => item.address)</td>
+                <td>@Html.DisplayFor(modelItem => item.tel)</td>
+                <td>
+                    <a href="~/Users/Details/@item.id" title="Voir" class="edit-icon"><i class="bi bi-eye text-info"></i></a>
+                    <a href="~/Users/Edit/@item.id" title="Editer" class="mx-2"><i class="bi bi-pencil text-success"></i></a>
+                    <a href="~/Users/Delete/@item.id" title="Supprimer" class="edit-icon"><i class="bi bi-trash text-danger"></i></a>
+                </td>
+
+
+            </tr>
+        }
+
+</table>

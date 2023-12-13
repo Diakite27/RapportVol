@@ -1,0 +1,40 @@
+﻿@model List<DeclarationDeVol.Models.ChartDataViewModel>
+
+@{
+    ViewBag.Title = "Statistiques des Vols par lieu";
+}
+
+<h4 class="text-primary fw-bold">Tableau de bord</h4>
+
+<!-- Inclure les fichiers nécessaires pour Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div style="width: 100%; margin: auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    var chartData = {
+        labels: @Html.Raw(Json.Encode(Model.Select(m => m.Location))),
+        datasets: [{
+            label: 'Nombre de déclarations',
+            data: @Html.Raw(Json.Encode(Model.Select(m => m.ObjectCount))),
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 3
+        }]
+    };
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

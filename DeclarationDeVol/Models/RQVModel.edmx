@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RQVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Declaration">
+          <Key>
+            <PropertyRef Name="declaration_id" />
+          </Key>
+          <Property Name="declaration_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="objectCat_id" Type="int" />
+          <Property Name="object_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="obj_description" Type="nvarchar(max)" />
+          <Property Name="vol_date" Type="datetime" Nullable="false" />
+          <Property Name="place" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="decl_date" Type="datetime" Nullable="false" />
+          <Property Name="user_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="statut" Type="int" />
+        </EntityType>
+        <EntityType Name="ObjectCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="tel" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Declarati__objec__3C69FB99">
+          <End Role="ObjectCategory" Type="Self.ObjectCategory" Multiplicity="0..1" />
+          <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Declaration">
+              <PropertyRef Name="objectCat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Declarati__user___3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Declaration">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RQVModelStoreContainer">
+          <EntitySet Name="Declaration" EntityType="Self.Declaration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObjectCategory" EntityType="Self.ObjectCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Declarati__objec__3C69FB99" Association="Self.FK__Declarati__objec__3C69FB99">
+            <End Role="ObjectCategory" EntitySet="ObjectCategory" />
+            <End Role="Declaration" EntitySet="Declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Declarati__user___3B75D760" Association="Self.FK__Declarati__user___3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Declaration" EntitySet="Declaration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RQVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Declaration">
+          <Key>
+            <PropertyRef Name="declaration_id" />
+          </Key>
+          <Property Name="declaration_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="objectCat_id" Type="Int32" />
+          <Property Name="object_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="obj_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vol_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="place" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="decl_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="statut" Type="Int32" />
+          <NavigationProperty Name="ObjectCategory" Relationship="Self.FK__Declarati__objec__3C69FB99" FromRole="Declaration" ToRole="ObjectCategory" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Declarati__user___3B75D760" FromRole="Declaration" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ObjectCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Declaration" Relationship="Self.FK__Declarati__objec__3C69FB99" FromRole="ObjectCategory" ToRole="Declaration" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Declaration" Relationship="Self.FK__Declarati__user___3B75D760" FromRole="Users" ToRole="Declaration" />
+        </EntityType>
+        <Association Name="FK__Declarati__objec__3C69FB99">
+          <End Role="ObjectCategory" Type="Self.ObjectCategory" Multiplicity="0..1" />
+          <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObjectCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Declaration">
+              <PropertyRef Name="objectCat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Declarati__user___3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Declaration" Type="Self.Declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Declaration">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RQVEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Declaration" EntityType="Self.Declaration" />
+          <EntitySet Name="ObjectCategory" EntityType="Self.ObjectCategory" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Declarati__objec__3C69FB99" Association="Self.FK__Declarati__objec__3C69FB99">
+            <End Role="ObjectCategory" EntitySet="ObjectCategory" />
+            <End Role="Declaration" EntitySet="Declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Declarati__user___3B75D760" Association="Self.FK__Declarati__user___3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Declaration" EntitySet="Declaration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RQVModelStoreContainer" CdmEntityContainer="RQVEntities1">
+          <EntitySetMapping Name="Declaration">
+            <EntityTypeMapping TypeName="RQVModel.Declaration">
+              <MappingFragment StoreEntitySet="Declaration">
+                <ScalarProperty Name="declaration_id" ColumnName="declaration_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="objectCat_id" ColumnName="objectCat_id" />
+                <ScalarProperty Name="object_name" ColumnName="object_name" />
+                <ScalarProperty Name="obj_description" ColumnName="obj_description" />
+                <ScalarProperty Name="vol_date" ColumnName="vol_date" />
+                <ScalarProperty Name="place" ColumnName="place" />
+                <ScalarProperty Name="decl_date" ColumnName="decl_date" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectCategory">
+            <EntityTypeMapping TypeName="RQVModel.ObjectCategory">
+              <MappingFragment StoreEntitySet="ObjectCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RQVModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
